@@ -1,0 +1,101 @@
+timestamp: 2015-02-07T14:24:55.617000
+CREATE TABLE auth_user(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    first_name CHAR(128),
+    last_name CHAR(128),
+    email CHAR(512),
+    password CHAR(512),
+    registration_key CHAR(512),
+    reset_password_key CHAR(512),
+    registration_id CHAR(512)
+);
+success!
+timestamp: 2015-02-07T14:24:55.694000
+CREATE TABLE auth_group(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    role CHAR(512),
+    description TEXT
+);
+success!
+timestamp: 2015-02-07T14:24:55.768000
+CREATE TABLE auth_membership(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    group_id INTEGER REFERENCES auth_group (id) ON DELETE CASCADE
+);
+success!
+timestamp: 2015-02-07T14:24:55.844000
+CREATE TABLE auth_permission(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    group_id INTEGER REFERENCES auth_group (id) ON DELETE CASCADE,
+    name CHAR(512),
+    table_name CHAR(512),
+    record_id INTEGER
+);
+success!
+timestamp: 2015-02-07T14:24:55.910000
+CREATE TABLE auth_event(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    time_stamp TIMESTAMP,
+    client_ip CHAR(512),
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    origin CHAR(512),
+    description TEXT
+);
+success!
+timestamp: 2015-02-07T14:24:55.986000
+CREATE TABLE auth_cas(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    created_on TIMESTAMP,
+    service CHAR(512),
+    ticket CHAR(512),
+    renew CHAR(1)
+);
+success!
+timestamp: 2015-02-14T13:42:04.052000
+CREATE TABLE articles(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title CHAR(512),
+    articleContent TEXT,
+    articleOwner INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    articleDate DATE
+);
+success!
+timestamp: 2015-02-14T13:42:04.161000
+CREATE TABLE featuredPost(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    postTitle CHAR(512),
+    postContent TEXT,
+    postAuthor INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    postDate DATE
+);
+success!
+timestamp: 2015-02-14T13:52:29.485000
+ALTER TABLE auth_user ADD is_admin CHAR(1);
+timestamp: 2015-02-14T13:52:29.594000
+ALTER TABLE auth_user ADD is_tester CHAR(1);
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
