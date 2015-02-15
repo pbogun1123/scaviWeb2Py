@@ -99,3 +99,77 @@ success!
 success!
 success!
 success!
+success!
+success!
+success!
+success!
+timestamp: 2015-02-14T17:58:09.039000
+CREATE TABLE scavenger_hunt(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT,
+    start_time DATE,
+    end_time DATE
+);
+success!
+success!
+timestamp: 2015-02-14T18:18:04.731000
+CREATE TABLE clue(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    hunt_id INTEGER REFERENCES scavenger_hunt (id) ON DELETE CASCADE,
+    question TEXT,
+    answer TEXT,
+    points INTEGER,
+    latitude DOUBLE,
+    longitude DOUBLE,
+    clue_number INTEGER
+);
+success!
+timestamp: 2015-02-14T18:18:04.856000
+CREATE TABLE scavi_session(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    hunt_id INTEGER REFERENCES scavenger_hunt (id) ON DELETE CASCADE,
+    next_clue_id INTEGER REFERENCES clue (id) ON DELETE CASCADE,
+    points INTEGER,
+    is_in_progress CHAR(1)
+);
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!

@@ -2,7 +2,25 @@
 
 def index():
     """ Main Page """
-    return dict(message=T('Hello World'))
+    """ Search auth_users DB by first/last name"""
+    form = SQLFORM.factory(Field('keyword', requires=IS_NOT_EMPTY())).process()
+    if form.accepted:
+        query = (((db.auth_user.first_name.contains(form.vars.keyword)) |
+                (db.auth_user.last_name.contains(form.vars.keyword))))
+        rows = db(query).select(orderby = db.auth_user.last_name)
+    elif form.errors:
+        response.flash = "Incomplete Search!"
+        rows = ''
+    else:
+        rows = ''
+    return dict(form=form, rows=rows)
+
+def user_CLICK():
+    """ Auto generate page for each user in user search """
+    user_id = request.args(0, cast=int)
+    user = db.auth_user(user_id) or redirect (URL('index'))
+    query = db(db.auth_user.id).select()
+    return dict(query = query, user = user)
 
 
 ########## Extras ##########
