@@ -17,6 +17,8 @@ db.define_table(
     Field('longitude', 'double', requires = IS_NOT_EMPTY()),
     Field('clue_number', 'integer', requires = IS_NOT_EMPTY()))
 
+db.clue.hunt_id.requires = IS_IN_DB(db, db.scavenger_hunt.id, '%(name)s')
+
 db.define_table(
     'scavi_session',
     Field('user_id', 'reference auth_user'),
@@ -24,3 +26,9 @@ db.define_table(
     Field('next_clue_id', 'reference clue'),
     Field('points', 'integer'),
     Field('is_in_progress', 'boolean', default=False))
+
+db.scavi_session.user_id.requires = IS_IN_DB(db, db.auth_user.id,
+                                    '%(last_name)s, %(first_name)s')
+db.scavi_session.hunt_id.requires = IS_IN_DB(db, db.scavenger_hunt.id, '%(name)s')
+db.scavi_session.next_clue_id.requires = IS_IN_DB(db, db.clue.id, '%(clue_number)s')
+
