@@ -3,7 +3,7 @@
 
 db.define_table(
     'scavenger_hunt',
-    Field('name', 'text', requires = IS_NOT_EMPTY(), label="Hunt Name"),
+    Field('name', 'text', requires = IS_NOT_EMPTY()),
     Field('start_time', 'date', requires = IS_NOT_EMPTY()),
     Field('end_time', 'date', requires = IS_NOT_EMPTY()))
 
