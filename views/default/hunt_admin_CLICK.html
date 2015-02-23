@@ -1,0 +1,18 @@
+{{extend 'layout.html'}}
+<center> <image src='/ScaviHunt/static/images/scavilogo.jpg' /> </center><HR>
+
+<p> This is an auto-generated page for the clicked scavenger hunt </p>
+
+Scavenger Hunt: {{=scavengerHunt.name}} <BR>
+Start Time:		{{=scavengerHunt.start_time}} <BR>
+End Time:		{{=scavengerHunt.end_time}} <BR> <HR>
+
+<h4> Edit hunt here </h4>
+
+{{=huntForm}}
+<HR>
+
+<H4> Hunt Users </H4>
+{{=huntUsersForm}}
+
+{{pass}}

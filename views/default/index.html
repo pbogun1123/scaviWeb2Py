@@ -1,13 +1,9 @@
 {{extend 'layout.html'}}
+<center> <image src='/ScaviHunt/static/images/scavilogo.jpg' /> </center><HR>
 
-<h2 align="center"> Quick User Search </h2> <BR>
-
-<p> The only user is "Piotr Bogun" at the moment. More can/will be done with this. </p> <BR> <HR>
-
-{{=form}}
-
+<H3> Application Guides </H3>
 <table class = "table">
-{{for row in rows:}}
-<tr><th><a href="{{=URL('user_CLICK', args=row.id)}}"> {{=row.last_name}}, {{=row.first_name}} </a></th></tr>
+{{for row in guideRows:}}
+<tr><th><a href="{{=URL('guidePost_CLICK', args=row.id)}}"> {{=row.postTitle}} {{=row.postDate}} </a></th></tr>
 {{pass}}
 </table>

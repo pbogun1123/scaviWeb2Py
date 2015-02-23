@@ -3,7 +3,7 @@
 
 db.define_table(
     'scavenger_hunt',
-    Field('name', 'text', requires = IS_NOT_EMPTY()),
+    Field('name', 'text', requires = IS_NOT_EMPTY(), label="Hunt Name"),
     Field('start_time', 'date', requires = IS_NOT_EMPTY()),
     Field('end_time', 'date', requires = IS_NOT_EMPTY()))
 
@@ -31,4 +31,11 @@ db.scavi_session.user_id.requires = IS_IN_DB(db, db.auth_user.id,
                                     '%(last_name)s, %(first_name)s')
 db.scavi_session.hunt_id.requires = IS_IN_DB(db, db.scavenger_hunt.id, '%(name)s')
 db.scavi_session.next_clue_id.requires = IS_IN_DB(db, db.clue.id, '%(clue_number)s')
+
+db.define_table(
+    'guidePost',
+    Field('postTitle', requires = IS_NOT_EMPTY(), label="Title"),
+    Field('postContent', 'text', requires = IS_NOT_EMPTY(), label="Content"),
+    Field('postAuthor', 'reference auth_user'),
+    Field('postDate', 'date', requires = IS_NOT_EMPTY()))
 

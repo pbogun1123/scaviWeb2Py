@@ -24,7 +24,10 @@ response.google_analytics_id = None
 ## this is the main application menu add/remove items as required
 #########################################################################
 
-response.menu = [('Home', False, URL('default', 'index'))]
+response.menu = [
+    ('Home', False, URL('default', 'index')),
+    ('Hunt Admin', False, URL('default', 'hunt_admin')),
+    ('User Admin', False, URL('default', 'user_admin'))]
 
 if False:
     auth.wikimenu()

@@ -1,0 +1,9 @@
+{{extend 'layout.html'}}
+<center> <image src='/ScaviHunt/static/images/scavilogo.jpg' /> </center><HR>
+
+<H3> Scavenger Hunts </H3>
+<table class = "table">
+{{for row in rows:}}
+<tr><th><a href="{{=URL('hunt_admin_CLICK', args=row.id)}}"> {{=row.name}} </a></th></tr>
+{{pass}}
+</table>

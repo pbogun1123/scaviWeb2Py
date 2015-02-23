@@ -1,0 +1,8 @@
+{{extend 'layout.html'}}
+<center> <image src='/ScaviHunt/static/images/scavilogo.jpg' /> </center><HR>
+
+<h3> {{=guide.postTitle}}</h3>
+<h5>Author: {{=guide.postAuthor.first_name}} {{=guide.postAuthor.last_name}} </h5>
+<p> {{=guide.postContent}} </p>
+
+{{pass}}
