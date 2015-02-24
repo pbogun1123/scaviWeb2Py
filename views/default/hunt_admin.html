@@ -4,6 +4,7 @@
 
 <table class = "table">
 {{for row in rows:}}
-<tr><th><a href="{{=URL('hunt_admin_CLICK', args=row.id)}}"> {{=row.name}} </a></th></tr>
+<tr><th><a href="{{=URL('hunt_admin_CLICK', args=row.id)}}"> {{=row.name}} <BR> 
+{{=row.start_time.strftime("%m/%d/%Y")}} - {{=row.end_time.strftime("%m/%d/%Y")}} </a></th></tr>
 {{pass}}
 </table>

@@ -30,7 +30,7 @@ db.define_table(
 db.scavi_session.user_id.requires = IS_IN_DB(db, db.auth_user.id,
                                     '%(last_name)s, %(first_name)s')
 db.scavi_session.hunt_id.requires = IS_IN_DB(db, db.scavenger_hunt.id, '%(name)s')
-db.scavi_session.next_clue_id.requires = IS_IN_DB(db, db.clue.id, '%(clue_number)s')
+db.scavi_session.next_clue_id.requires = IS_IN_DB(db, db.clue.id, '%(question)s')
 
 db.define_table(
     'guidePost',

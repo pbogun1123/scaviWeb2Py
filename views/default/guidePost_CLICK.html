@@ -1,7 +1,8 @@
 {{extend 'layout.html'}}
 
-<H4> {{=guide.postTitle}}</H4>
+<H4><a href="{{=URL('guidePost_EDIT', args=guide.id)}}"> {{=guide.postTitle}}</a></H4>
 <H6>Author: {{=guide.postAuthor.first_name}} {{=guide.postAuthor.last_name}} </H6>
 <p> {{=PRE(guide.postContent)}} </p>
 
 {{pass}}
+

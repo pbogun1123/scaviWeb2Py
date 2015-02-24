@@ -36,6 +36,9 @@ def user_admin():
 
 def googleMap():
     """ Uses google maps to get most accurate coordinates for scavenger sessions """
+    """ This was moved to clue_EDIT as that is where the coordinates functionality """
+    """ is needed most! If you want to re-use re-add to the menu in model/menu.py file """
+
     from gluon.tools import geocode
     latitude = longtitude = ''
     form=SQLFORM.factory(Field('search'), _class='form-search')
@@ -84,9 +87,88 @@ def user_CLICK():
 
 ########## _EDIT Pages ##########
 
-########## API CALLS ##########
+def guidePost_EDIT():
+    """ Edit page for selected guide post """
+    selectedPost = db.guidePost(request.args(0))
+    postForm = SQLFORM(db.guidePost, selectedPost, deletable=True)
+    if postForm.process().accepted:
+        response.flash = 'Edit Sucessful'
+    elif postForm.errors:
+        response.flash = 'Edit Failure'
+    return dict(postForm = postForm)
 
-#TODO: Incorporate all API calls!
+def hunt_admin_EDIT():
+    """ Edit page for selected scavenger hunt """
+    selectedHunt = db.scavenger_hunt(request.args(0))
+    huntForm = SQLFORM(db.scavenger_hunt, selectedHunt, deletable=True)
+    if huntForm.process().accepted:
+        response.flash = 'Edit Sucessful'
+    elif huntForm.errors:
+        response.flash = 'Edit Failure'
+    return dict(huntForm = huntForm)
+
+def clue_EDIT():
+    """ Edit page for selected clue """
+    from gluon.tools import geocode
+
+    selectedClue = db.clue(request.args(0))
+    clueForm = SQLFORM(db.clue, selectedClue, deletable=True)
+    if clueForm.process().accepted:
+        response.flash = 'Edit Sucessful'
+    elif clueForm.errors:
+        response.flash = 'Edit Failure'
+    
+    latitude = longtitude = ''
+    form=SQLFORM.factory(Field('search'), _class='form-search')
+    form.custom.widget.search['_class'] = 'input-long search-query'
+    form.custom.submit['_value'] = 'Search'
+    form.custom.submit['_class'] = 'btn'
+    if form.accepts(request):
+        address=form.vars.search
+        (latitude, longitude) = geocode(address)
+    else:
+        (latitude, longitude) = ('','')
+
+    return dict(form=form, latitude=latitude, longitude=longitude,
+                clueForm = clueForm)
+
+def session_EDIT():
+    """ Edit page for selected session """
+    selectedSession = db.scavi_session(request.args(0))
+    sessionForm = SQLFORM(db.scavi_session, selectedSession, deletable=True)
+    if sessionForm.process().accepted:
+        response.flash = 'Edit Sucessful'
+    elif sessionForm.errors:
+        response.flash = 'Edit Failure'
+    return dict(sessionForm = sessionForm)
+
+########## REST CALLS ##########
+
+def userREST():
+    """ Use to get .json format for specified user """
+    """ http://127.0.0.1:8000/ScaviHunt/default/userREST/154 """
+    """ http://127.0.0.1:8000/ScaviHunt/default/userREST.json/154 """
+    user_id = request.args(0, cast=int)
+    user = db.auth_user(user_id)
+    return dict (user = user)
+
+def scavengerHuntREST():
+    """ Use to get .json format for specified scavenger hunt """
+    scavenger_id = request.args(0, cast=int)
+    scavengerHunt = db.scavenger_hunt(scavenger_id)
+    return dict (scavengerHunt = scavengerHunt)
+
+def clueREST():
+    """ Use to get .json format for specified clue """
+    clue_id = request.args(0, cast=int)
+    clue = db.clue(clue_id)
+    return dict(clue = clue)
+
+def scaviSessionREST():
+    """ Use to get .json format for specified scavenger session """
+    session_id = request.args(0, cast=int)
+    scavengerSession = db.scavi_session(session_id)
+    return dict (scavengerSession = scavengerSession)
 
 ########## Extras ##########
 

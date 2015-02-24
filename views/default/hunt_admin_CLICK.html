@@ -1,14 +1,14 @@
 {{extend 'layout.html'}}
 
-<h4> {{=scavengerHunt.name}} </H4>
-Start: {{=scavengerHunt.start_time}} <BR>  
-End: {{=scavengerHunt.end_time}} <BR><BR>
+<h4><a href="{{=URL('hunt_admin_EDIT', args=scavengerHunt.id)}}"> {{=scavengerHunt.name}} </a></H4>
+Start: {{=scavengerHunt.start_time.strftime("%m/%d/%Y")}} <BR>  
+End: {{=scavengerHunt.end_time.strftime("%m/%d/%Y")}} <BR><BR>
 
 <h4> Clues </h4>
 
 <table class = "table">
 {{for clueInfo in clueRows:}}
-<tr><th> Clue #: {{=clueInfo.clue_number}} | Points: {{=clueInfo.points}} <BR> 
+<tr><th><a href="{{=URL('clue_EDIT', args=clueInfo.id)}}"> Clue #: {{=clueInfo.clue_number}}</a> | Points: {{=clueInfo.points}} <BR> 
 Question: {{=clueInfo.question}} <BR>
 Answer: {{=clueInfo.answer}} <BR>
 Latitude: {{=clueInfo.latitude}} <BR> 
@@ -19,7 +19,8 @@ Longitude: {{=clueInfo.longitude}}</th></tr>
 <h4> Session Users </h4>
 <table class = "table">
 {{for user in sessionRows:}}
-<tr><th> {{=user.user_id.first_name}} {{=user.user_id.last_name}} <BR>
-Next Clue #: {{=user.next_clue_id}} |  Points: {{=user.points}} | In Progress: {{=user.is_in_progress}}</th></tr>
+<tr><th><a href="{{=URL('user_CLICK', args=user.user_id)}}"> {{=user.user_id.first_name}} {{=user.user_id.last_name}} </a> | 
+<a href="{{=URL('session_EDIT', args=user.id)}}"> Edit Session </a> <BR>
+Current Clue: {{=user.next_clue_id}} |  Points: {{=user.points}} | In Progress: {{=user.is_in_progress}}</th></tr>
 {{pass}}
 </table>
