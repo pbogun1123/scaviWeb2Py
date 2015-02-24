@@ -1,18 +1,25 @@
 {{extend 'layout.html'}}
-<center> <image src='/ScaviHunt/static/images/scavilogo.jpg' /> </center><HR>
 
-<p> This is an auto-generated page for the clicked scavenger hunt </p>
+<h4> {{=scavengerHunt.name}} </H4>
+Start: {{=scavengerHunt.start_time}} <BR>  
+End: {{=scavengerHunt.end_time}} <BR><BR>
 
-Scavenger Hunt: {{=scavengerHunt.name}} <BR>
-Start Time:		{{=scavengerHunt.start_time}} <BR>
-End Time:		{{=scavengerHunt.end_time}} <BR> <HR>
+<h4> Clues </h4>
 
-<h4> Edit hunt here </h4>
-
-{{=huntForm}}
-<HR>
-
-<H4> Hunt Users </H4>
-{{=huntUsersForm}}
-
+<table class = "table">
+{{for clueInfo in clueRows:}}
+<tr><th> Clue #: {{=clueInfo.clue_number}} | Points: {{=clueInfo.points}} <BR> 
+Question: {{=clueInfo.question}} <BR>
+Answer: {{=clueInfo.answer}} <BR>
+Latitude: {{=clueInfo.latitude}} <BR> 
+Longitude: {{=clueInfo.longitude}}</th></tr>
 {{pass}}
+</table><BR>
+
+<h4> Session Users </h4>
+<table class = "table">
+{{for user in sessionRows:}}
+<tr><th> {{=user.user_id.first_name}} {{=user.user_id.last_name}} <BR>
+Next Clue #: {{=user.next_clue_id}} |  Points: {{=user.points}} | In Progress: {{=user.is_in_progress}}</th></tr>
+{{pass}}
+</table>

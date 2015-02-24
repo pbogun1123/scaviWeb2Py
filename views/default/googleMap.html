@@ -1,8 +1,9 @@
 {{extend 'layout.html'}}
-<center> <image src='/ScaviHunt/static/images/scavilogo.jpg' /> </center><HR>
 
 <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
 <script src="{{=URL('static','js/gmaps.js')}}"></script>
+
+<center><H3> Google Maps </H3></center>
 
 <div>
 	{{=form.custom.begin}}
@@ -35,3 +36,10 @@ $(document).ready(function(){
 });
 </script>
 {{pass}}
+
+<HR>
+<H6> Note: </H6>
+<p> Use this tool to get accurate latitude and longitude coordinates for a scavenger hunt.
+	The coordinates do not update with on-clicks. <BR> 
+	You must manually search the address to get accurate coordinates. <BR>
+	You can use this to find the address.</p>

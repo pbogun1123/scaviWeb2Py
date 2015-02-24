@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
 
+########## Main Pages ##########
+
 def index():
-    """ Main Page """
+    """ Main view of application """
+    """ Contains group documentation and application guides """
     allGuides = db.guidePost
     guideRows = db(allGuides).select(orderby = db.guidePost.postDate)
     
@@ -9,15 +12,16 @@ def index():
     rows = db(postQuery).select(orderby = db.guidePost.postTitle)
     return dict(rows = rows, guideRows = guideRows)
 
-def guidePost_CLICK():
-    guide_id = request.args(0, cast=int)
-    guide = db.guidePost(guide_id) or redirect (URL('index'))
-    guideQuery = db(db.guidePost.id).select()
-    return dict(guideQuery = guideQuery, guide = guide)
+#@auth.requires_login()
+def hunt_admin():
+    """ Administration page for viewing/editing scavenger hunts """
+    scaviQuery = db.scavenger_hunt.name
+    rows = db(scaviQuery).select(orderby=db.scavenger_hunt.name)
+    return dict(rows = rows)
 
-    
+#@auth.requires_login()
 def user_admin():
-    """ Administration page for editing users """
+    """ Administration page for viewing/editing users """
     allUsers = db.auth_user
     userRows = db(allUsers).select(orderby = db.auth_user.last_name)
     
@@ -30,35 +34,8 @@ def user_admin():
         rows = ''
     return dict(form=form, rows=rows, userRows = userRows)
 
-def user_CLICK():
-    """ Auto generate page for each user in user search """
-    user_id = request.args(0, cast=int)
-    user = db.auth_user(user_id) or redirect (URL('index'))
-    query = db(db.auth_user.id).select()
-    return dict(query = query, user = user)
-
-def hunt_admin():
-    """ Administration page for editing scavenger hunts """
-    scaviQuery = db.scavenger_hunt.name
-    rows = db(scaviQuery).select(orderby=db.scavenger_hunt.name)
-    return dict(rows = rows)
-
-def hunt_admin_CLICK():
-    """ Loads individual page for selected scavenger hunt """
-    scavenger_id = request.args(0, cast=int)
-    
-    scavengerHunt = db.scavenger_hunt(scavenger_id) or redirect(URL('hunt_admin'))
-    scavengerUsers = db.scavi_session(scavenger_id) or redirect(URL('hunt_admin'))
-
-    # TODO: FIX REFERENCING IN FORMS!
-
-    huntForm = SQLFORM(db.scavenger_hunt, scavengerHunt, deletable=True)
-    huntUsersForm = SQLFORM(db.scavi_session, scavengerUsers, deletable=True)
-    
-    return dict(scavengerHunt = scavengerHunt, huntForm = huntForm, huntUsersForm = huntUsersForm)
-
 def googleMap():
-    """ DESCRIPTION """
+    """ Uses google maps to get most accurate coordinates for scavenger sessions """
     from gluon.tools import geocode
     latitude = longtitude = ''
     form=SQLFORM.factory(Field('search'), _class='form-search')
@@ -72,11 +49,44 @@ def googleMap():
         (latitude, longitude) = ('','')
     return dict(form=form, latitude=latitude, longitude=longitude)
 
+########## _CLICK Pages ##########
+
+#@auth.requires_login()
+def guidePost_CLICK():
+    """ Loads individual page for selected front page post """
+    guide_id = request.args(0, cast=int)
+    guide = db.guidePost(guide_id) or redirect (URL('index'))
+    guideQuery = db(db.guidePost.id).select()
+    return dict(guideQuery = guideQuery, guide = guide)
+
+#@auth.requires_login()
+def hunt_admin_CLICK():
+    """ Loads individual page for selected scavenger hunt """
+    scavenger_id = request.args(0, cast=int)
+    scavengerHunt = db.scavenger_hunt(scavenger_id) or redirect(URL('hunt_admin'))
+    
+    clueQuery = db.clue.hunt_id==scavenger_id
+    clueRows = db(clueQuery).select()
+    
+    sessionQuery = db.scavi_session.hunt_id==scavenger_id
+    sessionRows = db(sessionQuery).select()
+
+    return dict(scavengerHunt = scavengerHunt, clueRows = clueRows,
+                sessionRows = sessionRows)
+
+#@auth.requires_login()
+def user_CLICK():
+    """ Loads individual page for selected user """
+    user_id = request.args(0, cast=int)
+    user = db.auth_user(user_id) or redirect (URL('index'))
+    query = db(db.auth_user.id).select()
+    return dict(query = query, user = user)
+
+########## _EDIT Pages ##########
+
 ########## API CALLS ##########
 
-
 #TODO: Incorporate all API calls!
-
 
 ########## Extras ##########
 
@@ -115,7 +125,7 @@ def call():
     return service()
 
 
-#@auth.requires_login() 
+@auth.requires_login() 
 def api():
     """
     this is example of API with access control
