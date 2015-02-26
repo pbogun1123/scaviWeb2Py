@@ -4,7 +4,8 @@
 Start: {{=scavengerHunt.start_time.strftime("%m/%d/%Y")}} <BR>  
 End: {{=scavengerHunt.end_time.strftime("%m/%d/%Y")}} <BR><BR>
 
-<h4> Clues </h4>
+<h4> Clues | 
+<a href="{{=URL('clue_CREATE')}}">New Clue </a></h4>
 
 <table class = "table">
 {{for clueInfo in clueRows:}}

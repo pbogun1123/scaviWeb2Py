@@ -142,6 +142,31 @@ def session_EDIT():
         response.flash = 'Edit Failure'
     return dict(sessionForm = sessionForm)
 
+########## _CREATE Pages ##########
+
+def clue_CREATE():
+    from gluon.tools import geocode
+
+    clueCreate = SQLFORM(db.clue)
+    if clueCreate.process().accepted:
+        response.flash = 'form accepted'
+    elif clueCreate.errors:
+        response.flash = 'form has errors'
+
+    latitude = longtitude = ''
+    form=SQLFORM.factory(Field('search'), _class='form-search')
+    form.custom.widget.search['_class'] = 'input-long search-query'
+    form.custom.submit['_value'] = 'Search'
+    form.custom.submit['_class'] = 'btn'
+    if form.accepts(request):
+        address=form.vars.search
+        (latitude, longitude) = geocode(address)
+    else:
+        (latitude, longitude) = ('','')
+    return dict(form=form, latitude=latitude, longitude=longitude,
+                clueCreate = clueCreate)
+    
+
 ########## REST CALLS ##########
 
 def userREST():
