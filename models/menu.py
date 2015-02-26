@@ -6,7 +6,7 @@
 #########################################################################
 
 response.logo = A(B('Scavi-Hunt'),XML('&trade;&nbsp;'),
-                  _class="brand",_href="peter1123.pythonanywhere.com/ScaviHunt/default/index")
+                  _class="brand",_href="http://peter1123.pythonanywhere.com/ScaviHunt/default/index")
 #"http://127.0.0.1:8000/ScaviHunt"
 
 ## response.title = request.application.replace('_',' ').title()
@@ -28,9 +28,10 @@ response.google_analytics_id = None
 response.menu = [
     ('Home', False, URL('default', 'index')),
     ('Hunt Admin', False, URL('default', 'hunt_admin')),
-    ('User Admin', False, URL('default', 'user_admin'))]
+    ('User Admin', False, URL('default', 'user_admin')),
+    ('Map', False, URL('default', 'googleMap'))]
 
-##('Map', False, URL('default', 'googleMap'))
+
 
 if False:
     auth.wikimenu()
