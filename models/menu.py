@@ -6,7 +6,7 @@
 #########################################################################
 
 response.logo = A(B('Scavi-Hunt'),XML('&trade;&nbsp;'),
-                  _class="brand",_href="http://peter1123.pythonanywhere.com/ScaviHunt/default/index")
+                  _class="brand",_href="index")
 #"http://127.0.0.1:8000/ScaviHunt"
 
 ## response.title = request.application.replace('_',' ').title()
