@@ -165,6 +165,14 @@ def clue_CREATE():
         (latitude, longitude) = ('','')
     return dict(form=form, latitude=latitude, longitude=longitude,
                 clueCreate = clueCreate)
+
+def hunt_admin_CREATE():
+    scavengerCreate = SQLFORM(db.scavenger_hunt)
+    if scavengerCreate.process().accepted:
+        response.flash = 'form accepted'
+    elif scavengerCreate.errors:
+        response.flash = 'form has errors'
+    return dict(scavengerCreate = scavengerCreate)
     
 
 ########## REST CALLS ##########
