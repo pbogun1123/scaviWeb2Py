@@ -173,6 +173,14 @@ def hunt_admin_CREATE():
     elif scavengerCreate.errors:
         response.flash = 'form has errors'
     return dict(scavengerCreate = scavengerCreate)
+
+def session_CREATE():
+    scavSessionCreate = SQLFORM(db.scavi_session)
+    if scavSessionCreate.process().accepted:
+        response.flash = 'form accepted'
+    elif scavSessionCreate.errors:
+        response.flash = 'form has errors'
+    return dict(scavSessionCreate = scavSessionCreate)
     
 
 ########## REST CALLS ##########
