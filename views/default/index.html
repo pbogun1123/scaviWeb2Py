@@ -5,7 +5,8 @@
 
 <BR>
 
-<H4> Application Documentation </H4>
+<H4> Application Documentation | 
+<a href="{{=URL('guidePost_CREATE')}}"> New Document </a></h4></H4>
 <table class = "table">
 {{for row in guideRows:}}
 <tr><th><a href="{{=URL('guidePost_CLICK', args=row.id)}}"> {{=row.postTitle}} <BR> 

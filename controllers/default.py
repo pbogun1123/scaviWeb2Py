@@ -181,6 +181,14 @@ def session_CREATE():
     elif scavSessionCreate.errors:
         response.flash = 'form has errors'
     return dict(scavSessionCreate = scavSessionCreate)
+
+def guidePost_CREATE():
+    documentCreate = SQLFORM(db.guidePost)
+    if documentCreate.process().accepted:
+        response.flash = 'form accepted'
+    elif documentCreate.errors:
+        response.flash = 'form has errors'
+    return dict(documentCreate = documentCreate)
     
 
 ########## REST CALLS ##########
