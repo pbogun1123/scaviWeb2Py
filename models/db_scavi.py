@@ -36,6 +36,6 @@ db.define_table(
     'guidePost',
     Field('postTitle', requires = IS_NOT_EMPTY(), label="Title"),
     Field('postContent', 'text', requires = IS_NOT_EMPTY(), label="Content"),
-    Field('postAuthor', 'reference auth_user'),
-    Field('postDate', 'date', requires = IS_NOT_EMPTY()))
+    Field('postAuthor', 'reference auth_user', label="Author"),
+    Field('postDate', 'date', requires = IS_NOT_EMPTY(), label="Date"))
 

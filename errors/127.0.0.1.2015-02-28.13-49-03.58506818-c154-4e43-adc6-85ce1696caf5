@@ -1,0 +1,740 @@
+(dp1
+S'output'
+p2
+S"<type 'exceptions.TypeError'> __init__() got an unexpected keyword argument 'showid'"
+p3
+sS'layer'
+p4
+S'E:\\web2py\\applications\\ScaviHunt\\models\\db_scavi.py'
+p5
+sS'code'
+p6
+S'# Scavi-Hunt Tables\n# auth_user in db.py\n\ndb.define_table(\n    \'scavenger_hunt\',\n    Field(\'name\', \'text\', requires = IS_NOT_EMPTY()),\n    Field(\'start_time\', \'date\', requires = IS_NOT_EMPTY()),\n    Field(\'end_time\', \'date\', requires = IS_NOT_EMPTY()))\n\ndb.define_table(\n    \'clue\',\n    Field(\'hunt_id\', \'reference scavenger_hunt\'),\n    Field(\'question\', \'text\', requires = IS_NOT_EMPTY()),\n    Field(\'answer\', \'text\', requires = IS_NOT_EMPTY()),\n    Field(\'points\', \'integer\', requires = IS_NOT_EMPTY()),\n    Field(\'latitude\', \'double\', requires = IS_NOT_EMPTY()),\n    Field(\'longitude\', \'double\', requires = IS_NOT_EMPTY()),\n    Field(\'clue_number\', \'integer\', requires = IS_NOT_EMPTY()))\n\ndb.clue.hunt_id.requires = IS_IN_DB(db, db.scavenger_hunt.id, \'%(name)s\')\n\ndb.define_table(\n    \'scavi_session\',\n    Field(\'user_id\', \'reference auth_user\', showid=False),\n    Field(\'hunt_id\', \'reference scavenger_hunt\'),\n    Field(\'next_clue_id\', \'reference clue\'),\n    Field(\'points\', \'integer\'),\n    Field(\'is_in_progress\', \'boolean\', default=False))\n\ndb.scavi_session.user_id.requires = IS_IN_DB(db, db.auth_user.id,\n                                    \'%(last_name)s, %(first_name)s\')\ndb.scavi_session.hunt_id.requires = IS_IN_DB(db, db.scavenger_hunt.id, \'%(name)s\')\ndb.scavi_session.next_clue_id.requires = IS_IN_DB(db, db.clue.id, \'%(question)s\')\n\ndb.define_table(\n    \'guidePost\',\n    Field(\'postTitle\', requires = IS_NOT_EMPTY(), label="Title"),\n    Field(\'postContent\', \'text\', requires = IS_NOT_EMPTY(), label="Content"),\n    Field(\'postAuthor\', \'reference auth_user\', label="Author"),\n    Field(\'postDate\', \'date\', requires = IS_NOT_EMPTY(), label="Date"))\n\n'
+p7
+sS'snapshot'
+p8
+(dp9
+S'exception'
+p10
+(dp11
+S'__hash__'
+p12
+S"<method-wrapper '__hash__' of exceptions.TypeError object>"
+p13
+sS'__setattr__'
+p14
+S"<method-wrapper '__setattr__' of exceptions.TypeError object>"
+p15
+sS'__reduce_ex__'
+p16
+S'<built-in method __reduce_ex__ of exceptions.TypeError object>'
+p17
+sS'__getslice__'
+p18
+S"<method-wrapper '__getslice__' of exceptions.TypeError object>"
+p19
+sS'__getitem__'
+p20
+S"<method-wrapper '__getitem__' of exceptions.TypeError object>"
+p21
+sS'__setstate__'
+p22
+S'<built-in method __setstate__ of exceptions.TypeError object>'
+p23
+sS'__reduce__'
+p24
+S'<built-in method __reduce__ of exceptions.TypeError object>'
+p25
+sS'__str__'
+p26
+S"<method-wrapper '__str__' of exceptions.TypeError object>"
+p27
+sS'__format__'
+p28
+S'<built-in method __format__ of exceptions.TypeError object>'
+p29
+sS'__getattribute__'
+p30
+S"<method-wrapper '__getattribute__' of exceptions.TypeError object>"
+p31
+sS'__class__'
+p32
+S"<type 'exceptions.TypeError'>"
+p33
+sS'__unicode__'
+p34
+S'<built-in method __unicode__ of exceptions.TypeError object>'
+p35
+sS'__delattr__'
+p36
+S"<method-wrapper '__delattr__' of exceptions.TypeError object>"
+p37
+sS'__subclasshook__'
+p38
+S'<built-in method __subclasshook__ of type object>'
+p39
+sS'__repr__'
+p40
+S"<method-wrapper '__repr__' of exceptions.TypeError object>"
+p41
+sS'args'
+p42
+S'("__init__() got an unexpected keyword argument \'showid\'",)'
+p43
+sS'__dict__'
+p44
+S'{}'
+p45
+sS'__sizeof__'
+p46
+S'<built-in method __sizeof__ of exceptions.TypeError object>'
+p47
+sS'__doc__'
+p48
+S"'Inappropriate argument type.'"
+p49
+sS'__init__'
+p50
+S"<method-wrapper '__init__' of exceptions.TypeError object>"
+p51
+sS'__new__'
+p52
+S'<built-in method __new__ of type object>'
+p53
+ssS'evalue'
+p54
+S"__init__() got an unexpected keyword argument 'showid'"
+p55
+sS'request'
+p56
+cgluon.html
+XML_unpickle
+p57
+(S's\xdeW\x00\x00<div><table><tr><td style="font-weight:bold;vertical-align:top;">ajax</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">application</td><td style="vertical-align:top;">:</td><td><div>ScaviHunt</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">args</td><td style="vertical-align:top;">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">cid</td><td style="vertical-align:top;">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">client</td><td style="vertical-align:top;">:</td><td><div>127.0.0.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">controller</td><td style="vertical-align:top;">:</td><td><div>default</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">cookies</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">session_id_admin</td><td style="vertical-align:top;">:</td><td><div>127.0.0.1-7a5ca517-2d91-40db-be2c-7b40daf06f2e<table><tr><td style="font-weight:bold;vertical-align:top;">comment</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">domain</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">expires</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">httponly</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">max-age</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">path</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">secure</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">version</td><td style="vertical-align:top;">:</td><td><div></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_id_scavihunt</td><td style="vertical-align:top;">:</td><td><div>127.0.0.1-bd0dd643-26f6-4ac8-b049-a50db9311659<table><tr><td style="font-weight:bold;vertical-align:top;">comment</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">domain</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">expires</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">httponly</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">max-age</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">path</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">secure</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">version</td><td style="vertical-align:top;">:</td><td><div></div></td></tr></table></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">env</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">HTTP_ACCEPT</td><td style="vertical-align:top;">:</td><td><div>text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_ACCEPT_ENCODING</td><td style="vertical-align:top;">:</td><td><div>gzip, deflate</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_ACCEPT_LANGUAGE</td><td style="vertical-align:top;">:</td><td><div>en</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_CONNECTION</td><td style="vertical-align:top;">:</td><td><div>keep-alive</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_COOKIE</td><td style="vertical-align:top;">:</td><td><div>session_id_scavihunt=127.0.0.1-bd0dd643-26f6-4ac8-b049-a50db9311659; session_id_admin=127.0.0.1-7a5ca517-2d91-40db-be2c-7b40daf06f2e</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_DNT</td><td style="vertical-align:top;">:</td><td><div>1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_HOST</td><td style="vertical-align:top;">:</td><td><div>127.0.0.1:8000</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_REFERER</td><td style="vertical-align:top;">:</td><td><div>http://127.0.0.1:8000/ScaviHunt/default/clue_CREATE</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_USER_AGENT</td><td style="vertical-align:top;">:</td><td><div>Mozilla/5.0 (Windows NT 6.3; WOW64; rv:36.0) Gecko/20100101 Firefox/36.0</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">PATH_INFO</td><td style="vertical-align:top;">:</td><td><div>/ScaviHunt/default/hunt_admin</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">QUERY_STRING</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">REMOTE_ADDR</td><td style="vertical-align:top;">:</td><td><div>127.0.0.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">REMOTE_PORT</td><td style="vertical-align:top;">:</td><td><div>63845</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">REQUEST_METHOD</td><td style="vertical-align:top;">:</td><td><div>GET</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SCRIPT_NAME</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SERVER_NAME</td><td style="vertical-align:top;">:</td><td><div>Piotr-PC</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SERVER_PORT</td><td style="vertical-align:top;">:</td><td><div>8000</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SERVER_PROTOCOL</td><td style="vertical-align:top;">:</td><td><div>HTTP/1.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SERVER_SOFTWARE</td><td style="vertical-align:top;">:</td><td><div>Rocket 1.2.6</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">app_folders</td><td style="vertical-align:top;">:</td><td><div>set([&#x27;E:\\\\web2py\\\\applications\\\\ScaviHunt\\\\&#x27;, &#x27;E:\\\\web2py\\\\applications\\\\admin\\\\&#x27;])</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">applications_parent</td><td style="vertical-align:top;">:</td><td><div>E:\\web2py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">cmd_args</td><td style="vertical-align:top;">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">cmd_options</td><td style="vertical-align:top;">:</td><td><div>&lt;Values at 0x29ae5f8: {&#x27;verbose&#x27;: False, &#x27;ip&#x27;: &#x27;127.0.0.1&#x27;, &#x27;debuglevel&#x27;: 30, &#x27;with_scheduler&#x27;: False, &#x27;ips&#x27;: [&#x27;fe80::c1e6:a3a6:1ad4:a5ce%5&#x27;, &#x27;192.168.1.10&#x27;, &#x27;2001:0:9d38:6ab8:ca1:3508:3f57:fef5&#x27;, &#x27;fe80::ca1:3508:3f57:fef5%7&#x27;], &#x27;shutdown_timeout&#x27;: 5, &#x27;taskbar&#x27;: False, &#x27;with_coverage&#x27;: False, &#x27;scheduler_groups&#x27;: None, &#x27;port&#x27;: 8000, &#x27;maxthreads&#x27;: None, &#x27;softcron&#x27;: False, &#x27;server_name&#x27;: &#x27;Piotr-PC&#x27;, &#x27;bpython&#x27;: False, &#x27;nogui&#x27;: False, &#x27;pid_filename&#x27;: &#x27;httpserver.pid&#x27;, &#x27;extcron&#x27;: False, &#x27;runcron&#x27;: False, &#x27;run_system_tests&#x27;: False, &#x27;test&#x27;: None, &#x27;folder&#x27;: &#x27;E:\\\\web2py&#x27;, &#x27;config&#x27;: &#x27;&#x27;, &#x27;minthreads&#x27;: None, &#x27;shell&#x27;: None, &#x27;run&#x27;: &#x27;&#x27;, &#x27;log_filename&#x27;: &#x27;httpserver.log&#x27;, &#x27;profiler_dir&#x27;: None, &#x27;args&#x27;: [&#x27;&#x27;], &#x27;socket_timeout&#x27;: 5, &#x27;ssl_ca_certificate&#x27;: None, &#x27;scheduler&#x27;: None, &#x27;interfaces&#x27;: None, &#x27;ssl_private_key&#x27;: &#x27;&#x27;, &#x27;gae&#x27;: None, &#x27;password&#x27;: &#x27;&lt;ask&gt;&#x27;, &#x27;request_queue_size&#x27;: 5, &#x27;ssl_certificate&#x27;: &#x27;&#x27;, &#x27;cronjob&#x27;: False, &#x27;numthreads&#x27;: None, &#x27;quiet&#x27;: False, &#x27;import_models&#x27;: False, &#x27;timeout&#x27;: 10, &#x27;plain&#x27;: False, &#x27;nobanner&#x27;: False}&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">db_sessions</td><td style="vertical-align:top;">:</td><td><div>set([])</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">debugging</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">gluon_parent</td><td style="vertical-align:top;">:</td><td><div>E:\\web2py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_accept</td><td style="vertical-align:top;">:</td><td><div>text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_accept_encoding</td><td style="vertical-align:top;">:</td><td><div>gzip, deflate</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_accept_language</td><td style="vertical-align:top;">:</td><td><div>en</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_connection</td><td style="vertical-align:top;">:</td><td><div>keep-alive</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_cookie</td><td style="vertical-align:top;">:</td><td><div>session_id_scavihunt=127.0.0.1-bd0dd643-26f6-4ac8-b049-a50db9311659; session_id_admin=127.0.0.1-7a5ca517-2d91-40db-be2c-7b40daf06f2e</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_dnt</td><td style="vertical-align:top;">:</td><td><div>1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_host</td><td style="vertical-align:top;">:</td><td><div>127.0.0.1:8000</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_referer</td><td style="vertical-align:top;">:</td><td><div>http://127.0.0.1:8000/ScaviHunt/default/clue_CREATE</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_user_agent</td><td style="vertical-align:top;">:</td><td><div>Mozilla/5.0 (Windows NT 6.3; WOW64; rv:36.0) Gecko/20100101 Firefox/36.0</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_jython</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_pypy</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_source</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">local_hosts</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>Piotr-PC</div></td></tr><tr><td><div>2001:0:9d38:6ab8:ca1:3508:3f57:fef5</div></td></tr><tr><td><div>fe80::ca1:3508:3f57:fef5%7</div></td></tr><tr><td><div>192.168.1.10</div></td></tr><tr><td><div>::ffff:127.0.0.1</div></td></tr><tr><td><div>::1</div></td></tr><tr><td><div>fe80::c1e6:a3a6:1ad4:a5ce%5</div></td></tr><tr><td><div>127.0.0.1</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">path_info</td><td style="vertical-align:top;">:</td><td><div>/ScaviHunt/default/hunt_admin</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">query_string</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">remote_addr</td><td style="vertical-align:top;">:</td><td><div>127.0.0.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">remote_port</td><td style="vertical-align:top;">:</td><td><div>63845</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">request_method</td><td style="vertical-align:top;">:</td><td><div>GET</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">request_uri</td><td style="vertical-align:top;">:</td><td><div>/ScaviHunt/default/hunt_admin</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">script_name</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">server_name</td><td style="vertical-align:top;">:</td><td><div>Piotr-PC</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">server_port</td><td style="vertical-align:top;">:</td><td><div>8000</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">server_protocol</td><td style="vertical-align:top;">:</td><td><div>HTTP/1.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">server_software</td><td style="vertical-align:top;">:</td><td><div>Rocket 1.2.6</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">web2py_path</td><td style="vertical-align:top;">:</td><td><div>E:\\web2py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">web2py_version</td><td style="vertical-align:top;">:</td><td><div>2.9.11-stable+timestamp.2014.09.15.23.35.11</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.errors</td><td style="vertical-align:top;">:</td><td><div>&lt;open file &#x27;&lt;stderr&gt;&#x27;, mode &#x27;w&#x27; at 0x007260D0&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.file_wrapper</td><td style="vertical-align:top;">:</td><td><div>&lt;class wsgiref.util.FileWrapper at 0x01F21960&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.input</td><td style="vertical-align:top;">:</td><td><div>&lt;socket._fileobject object at 0x078D6D30&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.multiprocess</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.multithread</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.run_once</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.url_scheme</td><td style="vertical-align:top;">:</td><td><div>http</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.version</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>1</div></td></tr><tr><td><div>0</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_errors</td><td style="vertical-align:top;">:</td><td><div>&lt;open file &#x27;&lt;stderr&gt;&#x27;, mode &#x27;w&#x27; at 0x007260D0&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_file_wrapper</td><td style="vertical-align:top;">:</td><td><div>&lt;class wsgiref.util.FileWrapper at 0x01F21960&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_input</td><td style="vertical-align:top;">:</td><td><div>&lt;socket._fileobject object at 0x078D6D30&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_multiprocess</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_multithread</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_run_once</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_url_scheme</td><td style="vertical-align:top;">:</td><td><div>http</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_version</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>1</div></td></tr><tr><td><div>0</div></td></tr></table></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">extension</td><td style="vertical-align:top;">:</td><td><div>html</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">folder</td><td style="vertical-align:top;">:</td><td><div>E:\\web2py\\applications\\ScaviHunt\\</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">function</td><td style="vertical-align:top;">:</td><td><div>hunt_admin</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">global_settings</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">app_folders</td><td style="vertical-align:top;">:</td><td><div>set([&#x27;E:\\\\web2py\\\\applications\\\\ScaviHunt\\\\&#x27;, &#x27;E:\\\\web2py\\\\applications\\\\admin\\\\&#x27;])</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">applications_parent</td><td style="vertical-align:top;">:</td><td><div>E:\\web2py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">cmd_args</td><td style="vertical-align:top;">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">cmd_options</td><td style="vertical-align:top;">:</td><td><div>&lt;Values at 0x29ae5f8: {&#x27;verbose&#x27;: False, &#x27;ip&#x27;: &#x27;127.0.0.1&#x27;, &#x27;debuglevel&#x27;: 30, &#x27;with_scheduler&#x27;: False, &#x27;ips&#x27;: [&#x27;fe80::c1e6:a3a6:1ad4:a5ce%5&#x27;, &#x27;192.168.1.10&#x27;, &#x27;2001:0:9d38:6ab8:ca1:3508:3f57:fef5&#x27;, &#x27;fe80::ca1:3508:3f57:fef5%7&#x27;], &#x27;shutdown_timeout&#x27;: 5, &#x27;taskbar&#x27;: False, &#x27;with_coverage&#x27;: False, &#x27;scheduler_groups&#x27;: None, &#x27;port&#x27;: 8000, &#x27;maxthreads&#x27;: None, &#x27;softcron&#x27;: False, &#x27;server_name&#x27;: &#x27;Piotr-PC&#x27;, &#x27;bpython&#x27;: False, &#x27;nogui&#x27;: False, &#x27;pid_filename&#x27;: &#x27;httpserver.pid&#x27;, &#x27;extcron&#x27;: False, &#x27;runcron&#x27;: False, &#x27;run_system_tests&#x27;: False, &#x27;test&#x27;: None, &#x27;folder&#x27;: &#x27;E:\\\\web2py&#x27;, &#x27;config&#x27;: &#x27;&#x27;, &#x27;minthreads&#x27;: None, &#x27;shell&#x27;: None, &#x27;run&#x27;: &#x27;&#x27;, &#x27;log_filename&#x27;: &#x27;httpserver.log&#x27;, &#x27;profiler_dir&#x27;: None, &#x27;args&#x27;: [&#x27;&#x27;], &#x27;socket_timeout&#x27;: 5, &#x27;ssl_ca_certificate&#x27;: None, &#x27;scheduler&#x27;: None, &#x27;interfaces&#x27;: None, &#x27;ssl_private_key&#x27;: &#x27;&#x27;, &#x27;gae&#x27;: None, &#x27;password&#x27;: &#x27;&lt;ask&gt;&#x27;, &#x27;request_queue_size&#x27;: 5, &#x27;ssl_certificate&#x27;: &#x27;&#x27;, &#x27;cronjob&#x27;: False, &#x27;numthreads&#x27;: None, &#x27;quiet&#x27;: False, &#x27;import_models&#x27;: False, &#x27;timeout&#x27;: 10, &#x27;plain&#x27;: False, &#x27;nobanner&#x27;: False}&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">db_sessions</td><td style="vertical-align:top;">:</td><td><div>set([])</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">debugging</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">gluon_parent</td><td style="vertical-align:top;">:</td><td><div>E:\\web2py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_jython</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_pypy</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_source</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">local_hosts</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>Piotr-PC</div></td></tr><tr><td><div>2001:0:9d38:6ab8:ca1:3508:3f57:fef5</div></td></tr><tr><td><div>fe80::ca1:3508:3f57:fef5%7</div></td></tr><tr><td><div>192.168.1.10</div></td></tr><tr><td><div>::ffff:127.0.0.1</div></td></tr><tr><td><div>::1</div></td></tr><tr><td><div>fe80::c1e6:a3a6:1ad4:a5ce%5</div></td></tr><tr><td><div>127.0.0.1</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">web2py_version</td><td style="vertical-align:top;">:</td><td><div>2.9.11-stable+timestamp.2014.09.15.23.35.11</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_https</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_local</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_restful</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_sheduler</td><td style="vertical-align:top;">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_shell</td><td style="vertical-align:top;">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">now</td><td style="vertical-align:top;">:</td><td><div>datetime.datetime(2015, 2, 28, 13, 49, 3, 8000)</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">raw_args</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">raw_extension</td><td style="vertical-align:top;">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">url</td><td style="vertical-align:top;">:</td><td><div>/ScaviHunt/default/hunt_admin</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">utcnow</td><td style="vertical-align:top;">:</td><td><div>datetime.datetime(2015, 2, 28, 19, 49, 3, 8000)</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">uuid</td><td style="vertical-align:top;">:</td><td><div>ScaviHunt/127.0.0.1.2015-02-28.13-49-03.58506818-c154-4e43-adc6-85ce1696caf5</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi</td><td style="vertical-align:top;">:</td><td><div>&lt;gluon.main.LazyWSGI object at 0x078E0FF0&gt;</div></td></tr></table></div>'
+tRp58
+sS'frames'
+p59
+(lp60
+(dp61
+S'file'
+p62
+S'E:\\web2py\\gluon\\restricted.py'
+p63
+sS'dump'
+p64
+(dp65
+sS'lnum'
+p66
+I224
+sS'lines'
+p67
+(dp68
+sS'call'
+p69
+S'(code=\'# Scavi-Hunt Tables\\n# auth_user in db.py\\n\\ndb.def...ate\\\', requires = IS_NOT_EMPTY(), label="Date"))\\n\\n\', environment={\'A\': <class \'gluon.html.A\'>, \'ANY_OF\': <class \'gluon.validators.ANY_OF\'>, \'ASSIGNJS\': <function ASSIGNJS>, \'Auth\': <class \'gluon.tools.Auth\'>, \'B\': <class \'gluon.html.B\'>, \'BEAUTIFY\': <class \'gluon.html.BEAUTIFY\'>, \'BODY\': <class \'gluon.html.BODY\'>, \'BR\': <class \'gluon.html.BR\'>, \'BUTTON\': <class \'gluon.html.BUTTON\'>, \'CAT\': <class \'gluon.html.CAT\'>, ...}, layer=r\'E:\\web2py\\applications\\ScaviHunt\\models\\db_scavi.py\')'
+p70
+sS'func'
+p71
+S'restricted'
+p72
+sa(dp73
+g62
+S'E:\\web2py\\applications\\ScaviHunt\\models\\db_scavi.py'
+p74
+sg64
+(dp75
+S'Field'
+p76
+S"<class 'gluon.dal.Field'>"
+p77
+sS'showid'
+p78
+S'undefined'
+p79
+sS'builtinFalse'
+p80
+S'False'
+p81
+ssg66
+I24
+sg67
+(dp82
+I19
+S''
+sI20
+S"db.clue.hunt_id.requires = IS_IN_DB(db, db.scavenger_hunt.id, '%(name)s')"
+p83
+sI21
+S''
+sI22
+S'db.define_table('
+p84
+sI23
+S"    'scavi_session',"
+p85
+sI24
+S"    Field('user_id', 'reference auth_user', showid=False),"
+p86
+sI25
+S"    Field('hunt_id', 'reference scavenger_hunt'),"
+p87
+sI26
+S"    Field('next_clue_id', 'reference clue'),"
+p88
+sI27
+S"    Field('points', 'integer'),"
+p89
+sI28
+S"    Field('is_in_progress', 'boolean', default=False))"
+p90
+ssg69
+S'()'
+p91
+sg71
+S'<module>'
+p92
+sasS'pyver'
+p93
+S'Python 2.7.6: E:\\web2py\\web2py.exe (prefix: C:\\Python27)'
+p94
+sS'session'
+p95
+g57
+(S's\x1a\x00\x00\x00<div><table></table></div>'
+tRp96
+sS'etype'
+p97
+S"<type 'exceptions.TypeError'>"
+p98
+sS'date'
+p99
+S'Sat Feb 28 13:49:03 2015'
+p100
+sS'response'
+p101
+g57
+(S's\xf4\x17\x00\x00<div><table><tr><td style="font-weight:bold;vertical-align:top;">body</td><td style="vertical-align:top;">:</td><td><div>&lt;cStringIO.StringO object at 0x078E0880&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">cookies</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">session_id_scavihunt</td><td style="vertical-align:top;">:</td><td><div>127.0.0.1-bd0dd643-26f6-4ac8-b049-a50db9311659<table><tr><td style="font-weight:bold;vertical-align:top;">comment</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">domain</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">expires</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">httponly</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">max-age</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">path</td><td style="vertical-align:top;">:</td><td><div>/</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">secure</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">version</td><td style="vertical-align:top;">:</td><td><div></div></td></tr></table></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">delimiters</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>{{</div></td></tr><tr><td><div>}}</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">files</td><td style="vertical-align:top;">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">flash</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">form_label_separator</td><td style="vertical-align:top;">:</td><td><div>: </div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">formstyle</td><td style="vertical-align:top;">:</td><td><div>table3cols</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">generic_patterns</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>*.json</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">headers</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">X-Powered-By</td><td style="vertical-align:top;">:</td><td><div>web2py</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">menu</td><td style="vertical-align:top;">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">meta</td><td style="vertical-align:top;">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">models_to_run</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>^\\w+\\.py$</div></td></tr><tr><td><div>^default/\\w+\\.py$</div></td></tr><tr><td><div>^default/hunt_admin/\\w+\\.py$</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">postprocessing</td><td style="vertical-align:top;">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_client</td><td style="vertical-align:top;">:</td><td><div>127.0.0.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_cookie_compression_level</td><td style="vertical-align:top;">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_cookie_expires</td><td style="vertical-align:top;">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_cookie_key</td><td style="vertical-align:top;">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_data_name</td><td style="vertical-align:top;">:</td><td><div>session_data_scavihunt</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_file</td><td style="vertical-align:top;">:</td><td><div>&lt;open file &#x27;E:\\\\web2py\\\\applications\\\\ScaviHunt\\\\sessions\\\\125\\\\05e\\\\127.0.0.1-bd0dd643-26f6-4ac8-b049-a50db9311659&#x27;, mode &#x27;rb+&#x27; at 0x02E5C910&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_filename</td><td style="vertical-align:top;">:</td><td><div>E:\\web2py\\applications\\ScaviHunt\\sessions\\127.0.0.1-bd0dd643-26f6-4ac8-b049-a50db9311659</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_hash</td><td style="vertical-align:top;">:</td><td><div>fd89a9d5a0b3ef42e08a3c2234e87886</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_id</td><td style="vertical-align:top;">:</td><td><div>127.0.0.1-bd0dd643-26f6-4ac8-b049-a50db9311659</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_id_name</td><td style="vertical-align:top;">:</td><td><div>session_id_scavihunt</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_locked</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_masterapp</td><td style="vertical-align:top;">:</td><td><div>ScaviHunt</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_new</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_storage_type</td><td style="vertical-align:top;">:</td><td><div>file</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">status</td><td style="vertical-align:top;">:</td><td><div>200</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">view</td><td style="vertical-align:top;">:</td><td><div>default/hunt_admin.html</div></td></tr></table></div>'
+tRp102
+sS'locals'
+p103
+(dp104
+S'Service'
+p105
+S"<class 'gluon.tools.Service'>"
+p106
+sS'OBJECT'
+p107
+S"<class 'gluon.html.OBJECT'>"
+p108
+sS'SQLDB'
+p109
+S"<class 'gluon.dal.DAL'>"
+p110
+sg95
+S"<Storage {'_formkey[scavenger_hunt/3]': ['ed5c73...95f4d', '15e9061d-41fe-4c1e-b65d-a505b3cd77ab']}>"
+p111
+sS'LINK'
+p112
+S"<class 'gluon.html.LINK'>"
+p113
+sS'BR'
+p114
+S"<class 'gluon.html.BR'>"
+p115
+sS'local_import'
+p116
+S'<function <lambda>>'
+p117
+sS'OPTGROUP'
+p118
+S"<class 'gluon.html.OPTGROUP'>"
+p119
+sS'__package__'
+p120
+S'None'
+p121
+sS'PRE'
+p122
+S"<class 'gluon.html.PRE'>"
+p123
+sS'IS_INT_IN_RANGE'
+p124
+S"<class 'gluon.validators.IS_INT_IN_RANGE'>"
+p125
+sS'IS_LOWER'
+p126
+S"<class 'gluon.validators.IS_LOWER'>"
+p127
+sS'IS_STRONG'
+p128
+S"<class 'gluon.validators.IS_STRONG'>"
+p129
+sS'cache'
+p130
+S'<gluon.cache.Cache object>'
+p131
+sS'IS_IN_DB'
+p132
+S"<class 'gluon.validators.IS_IN_DB'>"
+p133
+sS'TAG'
+p134
+S'<gluon.html.__TAG__ object>'
+p135
+sS'SQLField'
+p136
+S"<class 'gluon.dal.Field'>"
+p137
+sS'mail'
+p138
+S'<gluon.tools.Mail object>'
+p139
+sS'BODY'
+p140
+S"<class 'gluon.html.BODY'>"
+p141
+sS'IS_DATE_IN_RANGE'
+p142
+S"<class 'gluon.validators.IS_DATE_IN_RANGE'>"
+p143
+sS'TH'
+p144
+S"<class 'gluon.html.TH'>"
+p145
+sS'URL'
+p146
+S'<function URL>'
+p147
+sS'__file__'
+p148
+S"r'E:\\web2py\\applications\\ScaviHunt\\models\\db_scavi.py'"
+p149
+sS'db'
+p150
+S'<DAL uri="sqlite://storage.sqlite">'
+p151
+sS'auth'
+p152
+S'<gluon.tools.Auth object>'
+p153
+sS'P'
+S"<class 'gluon.html.P'>"
+p154
+sS'TFOOT'
+p155
+S"<class 'gluon.html.TFOOT'>"
+p156
+sS'XHTML'
+p157
+S"<class 'gluon.html.XHTML'>"
+p158
+sS'ON'
+p159
+S'True'
+p160
+sS'OL'
+p161
+S"<class 'gluon.html.OL'>"
+p162
+sS'TEXTAREA'
+p163
+S"<class 'gluon.html.TEXTAREA'>"
+p164
+sS'MENU'
+p165
+S"<class 'gluon.html.MENU'>"
+p166
+sS'LOAD'
+p167
+S'<function LOAD>'
+p168
+sS'CODE'
+p169
+S"<class 'gluon.html.CODE'>"
+p170
+sS'HTTP'
+p171
+S"<class 'gluon.http.HTTP'>"
+p172
+sS'HR'
+p173
+S"<class 'gluon.html.HR'>"
+p174
+sS'IS_DATETIME'
+p175
+S"<class 'gluon.validators.IS_DATETIME'>"
+p176
+sS'HEAD'
+p177
+S"<class 'gluon.html.HEAD'>"
+p178
+sS'LABEL'
+p179
+S"<class 'gluon.html.LABEL'>"
+p180
+sS'CLEANUP'
+p181
+S"<class 'gluon.validators.CLEANUP'>"
+p182
+sS'plugins'
+p183
+S'<gluon.tools.PluginManager object>'
+p184
+sS'SELECT'
+p185
+S"<class 'gluon.html.SELECT'>"
+p186
+sS'use_janrain'
+p187
+S'<function use_janrain>'
+p188
+sS'CENTER'
+p189
+S"<class 'gluon.html.CENTER'>"
+p190
+sS'Auth'
+p191
+S"<class 'gluon.tools.Auth'>"
+p192
+sS'__builtins__'
+p193
+S"{'ArithmeticError': <type 'exceptions.ArithmeticError'>, 'AssertionError': <type 'exceptions.AssertionError'>, 'AttributeError': <type 'exceptions.AttributeError'>, 'BaseException': <type 'exceptions.BaseException'>, 'BufferError': <type 'exceptions.BufferError'>, 'BytesWarning': <type 'exceptions.BytesWarning'>, 'DeprecationWarning': <type 'exceptions.DeprecationWarning'>, 'EOFError': <type 'exceptions.EOFError'>, 'Ellipsis': Ellipsis, 'EnvironmentError': <type 'exceptions.EnvironmentError'>, ...}"
+p194
+sS'HTML'
+p195
+S"<class 'gluon.html.HTML'>"
+p196
+sS'SQLFORM'
+p197
+S"<class 'gluon.sqlhtml.SQLFORM'>"
+p198
+sS'EM'
+p199
+S"<class 'gluon.html.EM'>"
+p200
+sS'redirect'
+p201
+S'<function redirect>'
+p202
+sS'FIELDSET'
+p203
+S"<class 'gluon.html.FIELDSET'>"
+p204
+sS'IS_EQUAL_TO'
+p205
+S"<class 'gluon.validators.IS_EQUAL_TO'>"
+p206
+sS'embed64'
+p207
+S'<function embed64>'
+p208
+sS'IS_LIST_OF'
+p209
+S"<class 'gluon.validators.IS_LIST_OF'>"
+p210
+sS'DEBUG'
+p211
+g160
+sS'__name__'
+p212
+S"'__restricted__'"
+p213
+sS'EMBED'
+p214
+S"<class 'gluon.html.EMBED'>"
+p215
+sS'FORM'
+p216
+S"<class 'gluon.html.FORM'>"
+p217
+sS'H2'
+p218
+S"<class 'gluon.html.H2'>"
+p219
+sS'H3'
+p220
+S"<class 'gluon.html.H3'>"
+p221
+sS'BUTTON'
+p222
+S"<class 'gluon.html.BUTTON'>"
+p223
+sS'H1'
+p224
+S"<class 'gluon.html.H1'>"
+p225
+sS'H6'
+p226
+S"<class 'gluon.html.H6'>"
+p227
+sS'H4'
+p228
+S"<class 'gluon.html.H4'>"
+p229
+sS'H5'
+p230
+S"<class 'gluon.html.H5'>"
+p231
+sS'UL'
+p232
+S"<class 'gluon.html.UL'>"
+p233
+sS'IS_UPPER'
+p234
+S"<class 'gluon.validators.IS_UPPER'>"
+p235
+sS'xmlescape'
+p236
+S'<function xmlescape>'
+p237
+sS'IS_TIME'
+p238
+S"<class 'gluon.validators.IS_TIME'>"
+p239
+sS'OPTION'
+p240
+S"<class 'gluon.html.OPTION'>"
+p241
+sS'TITLE'
+p242
+S"<class 'gluon.html.TITLE'>"
+p243
+sS'CRYPT'
+p244
+S"<class 'gluon.validators.CRYPT'>"
+p245
+sS'IS_EMPTY_OR'
+p246
+S"<class 'gluon.validators.IS_EMPTY_OR'>"
+p247
+sS'MARKMIN'
+p248
+S"<class 'gluon.html.MARKMIN'>"
+p249
+sS'INPUT'
+p250
+S"<class 'gluon.html.INPUT'>"
+p251
+sS'STRONG'
+p252
+S"<class 'gluon.html.STRONG'>"
+p253
+sS'COL'
+p254
+S"<class 'gluon.html.COL'>"
+p255
+sS'service'
+p256
+S'<gluon.tools.Service object>'
+p257
+sS'SCRIPT'
+p258
+S"<class 'gluon.html.SCRIPT'>"
+p259
+sS'TABLE'
+p260
+S"<class 'gluon.html.TABLE'>"
+p261
+sS'IS_IPV4'
+p262
+S"<class 'gluon.validators.IS_IPV4'>"
+p263
+sS'IS_LENGTH'
+p264
+S"<class 'gluon.validators.IS_LENGTH'>"
+p265
+sS'IS_IPV6'
+p266
+S"<class 'gluon.validators.IS_IPV6'>"
+p267
+sS'XML'
+p268
+S"<class 'gluon.html.XML'>"
+p269
+sS'B'
+S"<class 'gluon.html.B'>"
+p270
+sS'IMG'
+p271
+S"<class 'gluon.html.IMG'>"
+p272
+sS'SQLTABLE'
+p273
+S"<class 'gluon.sqlhtml.SQLTABLE'>"
+p274
+sS'IS_MATCH'
+p275
+S"<class 'gluon.validators.IS_MATCH'>"
+p276
+sS'IS_ALPHANUMERIC'
+p277
+S"<class 'gluon.validators.IS_ALPHANUMERIC'>"
+p278
+sS'SPAN'
+p279
+S"<class 'gluon.html.SPAN'>"
+p280
+sS'IS_JSON'
+p281
+S"<class 'gluon.validators.IS_JSON'>"
+p282
+sS'IS_IPADDRESS'
+p283
+S"<class 'gluon.validators.IS_IPADDRESS'>"
+p284
+sS'IS_SLUG'
+p285
+S"<class 'gluon.validators.IS_SLUG'>"
+p286
+sS'BEAUTIFY'
+p287
+S"<class 'gluon.html.BEAUTIFY'>"
+p288
+sS'META'
+p289
+S"<class 'gluon.html.META'>"
+p290
+sS'IS_DATE'
+p291
+S"<class 'gluon.validators.IS_DATE'>"
+p292
+sS'IS_EMAIL'
+p293
+S"<class 'gluon.validators.IS_EMAIL'>"
+p294
+sS'IS_NOT_EMPTY'
+p295
+S"<class 'gluon.validators.IS_NOT_EMPTY'>"
+p296
+sg56
+S"<Storage {'_vars': None, 'function': 'hunt_admin...older': 'E:\\\\web2py\\\\applications\\\\ScaviHunt\\\\'}>"
+p297
+sS'TBODY'
+p298
+S"<class 'gluon.html.TBODY'>"
+p299
+sS'CAT'
+p300
+S"<class 'gluon.html.CAT'>"
+p301
+sS'Field'
+p302
+S"<class 'gluon.dal.Field'>"
+p303
+sS'IS_LIST_OF_EMAILS'
+p304
+S"<class 'gluon.validators.IS_LIST_OF_EMAILS'>"
+p305
+sS'DIV'
+p306
+S"<class 'gluon.html.DIV'>"
+p307
+sS'LEGEND'
+p308
+S"<class 'gluon.html.LEGEND'>"
+p309
+sS'COLGROUP'
+p310
+S"<class 'gluon.html.COLGROUP'>"
+p311
+sS'DAL'
+p312
+S"<class 'gluon.dal.DAL'>"
+p313
+sS'ASSIGNJS'
+p314
+S'<function ASSIGNJS>'
+p315
+sS'TR'
+p316
+S"<class 'gluon.html.TR'>"
+p317
+sS'LI'
+p318
+S"<class 'gluon.html.LI'>"
+p319
+sS'IFRAME'
+p320
+S"<class 'gluon.html.IFRAME'>"
+p321
+sS'TD'
+p322
+S"<class 'gluon.html.TD'>"
+p323
+sS'PluginManager'
+p324
+S"<class 'gluon.tools.PluginManager'>"
+p325
+sS'IS_URL'
+p326
+S"<class 'gluon.validators.IS_URL'>"
+p327
+sS'A'
+S"<class 'gluon.html.A'>"
+p328
+sS'STYLE'
+p329
+S"<class 'gluon.html.STYLE'>"
+p330
+sS'IS_DATETIME_IN_RANGE'
+p331
+S"<class 'gluon.validators.IS_DATETIME_IN_RANGE'>"
+p332
+sS'IS_IMAGE'
+p333
+S"<class 'gluon.validators.IS_IMAGE'>"
+p334
+sS'I'
+S"<class 'gluon.html.I'>"
+p335
+sS'IS_NOT_IN_DB'
+p336
+S"<class 'gluon.validators.IS_NOT_IN_DB'>"
+p337
+sg101
+S"<Storage {'body': <cStringIO.StringO object at 0... 0x078D6530>, 'view': 'default/hunt_admin.html'}>"
+p338
+sS'THEAD'
+p339
+S"<class 'gluon.html.THEAD'>"
+p340
+sS'ANY_OF'
+p341
+S"<class 'gluon.validators.ANY_OF'>"
+p342
+sS'IS_NULL_OR'
+p343
+S"<class 'gluon.validators.IS_EMPTY_OR'>"
+p344
+sS'IS_FLOAT_IN_RANGE'
+p345
+S"<class 'gluon.validators.IS_FLOAT_IN_RANGE'>"
+p346
+sS'IS_EXPR'
+p347
+S"<class 'gluon.validators.IS_EXPR'>"
+p348
+sS'IS_IN_SET'
+p349
+S"<class 'gluon.validators.IS_IN_SET'>"
+p350
+sS'IS_UPLOAD_FILENAME'
+p351
+S"<class 'gluon.validators.IS_UPLOAD_FILENAME'>"
+p352
+sS'IS_DECIMAL_IN_RANGE'
+p353
+S"<class 'gluon.validators.IS_DECIMAL_IN_RANGE'>"
+p354
+sS'TT'
+p355
+S"<class 'gluon.html.TT'>"
+p356
+sS'T'
+S'<gluon.languages.translator object>'
+p357
+sssS'traceback'
+p358
+S'Traceback (most recent call last):\n  File "gluon/restricted.py", line 224, in restricted\n  File "E:\\web2py\\applications\\ScaviHunt\\models\\db_scavi.py", line 24, in <module>\n    Field(\'user_id\', \'reference auth_user\', showid=False),\nTypeError: __init__() got an unexpected keyword argument \'showid\'\n'
+p359
+s.

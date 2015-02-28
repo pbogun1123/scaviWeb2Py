@@ -1,15 +1,11 @@
 {{extend 'layout.html'}}
 
-<H4> Scavi-Hunt Application </H4>
-<p> TODO: Quick information about application here </p>
-
-<BR>
-
 <H4> Application Documentation | 
-<a href="{{=URL('guidePost_CREATE')}}"> New Document </a></h4></H4>
+<a href="{{=URL('guidePost_CREATE')}}"> New Document </a></h4></H4><HR width="40%">
+
 <table class = "table">
 {{for row in guideRows:}}
-<tr><th><a href="{{=URL('guidePost_CLICK', args=row.id)}}"> {{=row.postTitle}} <BR> 
-{{=row.postDate.strftime("%m/%d/%Y")}} </a></th></tr>
+<tr><a href="{{=URL('guidePost_CLICK', args=row.id)}}"> {{=row.postTitle}}
+<H6>{{=row.postDate.strftime("%m/%d/%Y")}} </H6></a></tr><HR width="40%">
 {{pass}}
 </table>

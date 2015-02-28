@@ -1,18 +1,23 @@
 {{extend 'layout.html'}}
 
-<H4> User Search </H4>
-{{=form}}
+<H4> User Search </H4> <BR>
+
+{{=form}} <BR>
+
 <table class = "table">
 {{for row in rows:}}
-<tr><th><a href="{{=URL('user_CLICK', args=row.id)}}"> {{=row.last_name}}, {{=row.first_name}} </a></th></tr>
+<tr><a href="{{=URL('user_CLICK', args=row.id)}}"> {{=row.last_name}}, {{=row.first_name}} </a></tr>
+<HR width="40%">
 {{pass}}
 </table>
 
 <BR>
 
-<H4> Registered Users </H4>
+<H4> Registered Users </H4> <HR <HR width="40%">
+
 <table class = "table">
 {{for row in userRows:}}
-<tr><th><a href="{{=URL('user_CLICK', args=row.id)}}"> {{=row.last_name}}, {{=row.first_name}} </a></th></tr>
+<tr><a href="{{=URL('user_CLICK', args=row.id)}}"> {{=row.last_name}}, {{=row.first_name}} </a></tr>
+<HR width="40%">
 {{pass}}
 </table>

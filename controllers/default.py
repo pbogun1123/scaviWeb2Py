@@ -6,7 +6,7 @@ def index():
     """ Main view of application """
     """ Contains group documentation and application guides """
     allGuides = db.guidePost
-    guideRows = db(allGuides).select(orderby = db.guidePost.postDate)
+    guideRows = db(allGuides).select(orderby = ~db.guidePost.postDate)
     
     postQuery = db.guidePost.postTitle
     rows = db(postQuery).select(orderby = db.guidePost.postTitle)
@@ -90,7 +90,7 @@ def user_CLICK():
 def guidePost_EDIT():
     """ Edit page for selected guide post """
     selectedPost = db.guidePost(request.args(0))
-    postForm = SQLFORM(db.guidePost, selectedPost, deletable=True)
+    postForm = SQLFORM(db.guidePost, selectedPost, deletable=True, showid=False)
     if postForm.process().accepted:
         response.flash = 'Edit Sucessful'
     elif postForm.errors:
@@ -100,7 +100,8 @@ def guidePost_EDIT():
 def hunt_admin_EDIT():
     """ Edit page for selected scavenger hunt """
     selectedHunt = db.scavenger_hunt(request.args(0))
-    huntForm = SQLFORM(db.scavenger_hunt, selectedHunt, deletable=True)
+    huntForm = SQLFORM(db.scavenger_hunt, selectedHunt, deletable=True,
+                       showid=False)
     if huntForm.process().accepted:
         response.flash = 'Edit Sucessful'
     elif huntForm.errors:
@@ -112,7 +113,7 @@ def clue_EDIT():
     from gluon.tools import geocode
 
     selectedClue = db.clue(request.args(0))
-    clueForm = SQLFORM(db.clue, selectedClue, deletable=True)
+    clueForm = SQLFORM(db.clue, selectedClue, deletable=True, showid=False)
     if clueForm.process().accepted:
         response.flash = 'Edit Sucessful'
     elif clueForm.errors:
@@ -135,7 +136,8 @@ def clue_EDIT():
 def session_EDIT():
     """ Edit page for selected session """
     selectedSession = db.scavi_session(request.args(0))
-    sessionForm = SQLFORM(db.scavi_session, selectedSession, deletable=True)
+    sessionForm = SQLFORM(db.scavi_session, selectedSession, deletable=True,
+                          showid=False)
     if sessionForm.process().accepted:
         response.flash = 'Edit Sucessful'
     elif sessionForm.errors:
