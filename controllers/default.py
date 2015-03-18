@@ -1,25 +1,22 @@
 # -*- coding: utf-8 -*-
 
-########## Main Pages ##########
+#################### Main Pages ####################
 
 def index():
     """ Main view of application """
     """ Contains group documentation and application guides """
     allGuides = db.guidePost
     guideRows = db(allGuides).select(orderby = ~db.guidePost.postDate)
-    
     postQuery = db.guidePost.postTitle
     rows = db(postQuery).select(orderby = db.guidePost.postTitle)
     return dict(rows = rows, guideRows = guideRows)
 
-#@auth.requires_login()
 def hunt_admin():
     """ Administration page for viewing/editing scavenger hunts """
     scaviQuery = db.scavenger_hunt.name
     rows = db(scaviQuery).select(orderby=db.scavenger_hunt.name)
     return dict(rows = rows)
 
-#@auth.requires_login()
 def user_admin():
     """ Administration page for viewing/editing users """
     allUsers = db.auth_user
@@ -37,8 +34,7 @@ def user_admin():
 def googleMap():
     """ Uses google maps to get most accurate coordinates for scavenger sessions """
     """ This was moved to clue_EDIT as that is where the coordinates functionality """
-    """ is needed most! If you want to re-use re-add to the menu in model/menu.py file """
-
+    """ is needed most. If you want to re-use, re-add to the menu in model/menu.py file """
     from gluon.tools import geocode
     latitude = longtitude = ''
     form=SQLFORM.factory(Field('search'), _class='form-search')
@@ -52,9 +48,8 @@ def googleMap():
         (latitude, longitude) = ('','')
     return dict(form=form, latitude=latitude, longitude=longitude)
 
-########## _CLICK Pages ##########
+#################### _CLICK Pages ####################
 
-#@auth.requires_login()
 def guidePost_CLICK():
     """ Loads individual page for selected front page post """
     guide_id = request.args(0, cast=int)
@@ -62,7 +57,6 @@ def guidePost_CLICK():
     guideQuery = db(db.guidePost.id).select()
     return dict(guideQuery = guideQuery, guide = guide)
 
-#@auth.requires_login()
 def hunt_admin_CLICK():
     """ Loads individual page for selected scavenger hunt """
     scavenger_id = request.args(0, cast=int)
@@ -77,22 +71,23 @@ def hunt_admin_CLICK():
     return dict(scavengerHunt = scavengerHunt, clueRows = clueRows,
                 sessionRows = sessionRows)
 
-#@auth.requires_login()
 def user_CLICK():
     """ Loads individual page for selected user """
     user_id = request.args(0, cast=int)
     user = db.auth_user(user_id) or redirect (URL('index'))
-    query = db(db.auth_user.id).select()
-    return dict(query = query, user = user)
+    userSession = db.scavi_session.user_id == user_id
+    userHunts = db(userSession).select()
+    
+    return dict(user = user, userHunts = userHunts)
 
-########## _EDIT Pages ##########
+#################### _EDIT Pages ####################
 
 def guidePost_EDIT():
     """ Edit page for selected guide post """
     selectedPost = db.guidePost(request.args(0))
     postForm = SQLFORM(db.guidePost, selectedPost, deletable=True, showid=False)
     if postForm.process().accepted:
-        response.flash = 'Edit Sucessful'
+        redirect(URL(r=request, f='index'))
     elif postForm.errors:
         response.flash = 'Edit Failure'
     return dict(postForm = postForm)
@@ -103,7 +98,7 @@ def hunt_admin_EDIT():
     huntForm = SQLFORM(db.scavenger_hunt, selectedHunt, deletable=True,
                        showid=False)
     if huntForm.process().accepted:
-        response.flash = 'Edit Sucessful'
+        redirect(URL(r=request, f='hunt_admin'))
     elif huntForm.errors:
         response.flash = 'Edit Failure'
     return dict(huntForm = huntForm)
@@ -111,11 +106,10 @@ def hunt_admin_EDIT():
 def clue_EDIT():
     """ Edit page for selected clue """
     from gluon.tools import geocode
-
     selectedClue = db.clue(request.args(0))
     clueForm = SQLFORM(db.clue, selectedClue, deletable=True, showid=False)
     if clueForm.process().accepted:
-        response.flash = 'Edit Sucessful'
+        redirect(URL(r=request, f='hunt_admin'))
     elif clueForm.errors:
         response.flash = 'Edit Failure'
     
@@ -124,6 +118,7 @@ def clue_EDIT():
     form.custom.widget.search['_class'] = 'input-long search-query'
     form.custom.submit['_value'] = 'Search'
     form.custom.submit['_class'] = 'btn'
+    
     if form.accepts(request):
         address=form.vars.search
         (latitude, longitude) = geocode(address)
@@ -139,19 +134,31 @@ def session_EDIT():
     sessionForm = SQLFORM(db.scavi_session, selectedSession, deletable=True,
                           showid=False)
     if sessionForm.process().accepted:
-        response.flash = 'Edit Sucessful'
+        redirect(URL(r=request, f='hunt_admin'))
     elif sessionForm.errors:
         response.flash = 'Edit Failure'
     return dict(sessionForm = sessionForm)
 
-########## _CREATE Pages ##########
+def user_EDIT():
+    """ Edit page for selected user """
+    selectedUser = db.auth_user(request.args(0))
+    userForm = SQLFORM(db.auth_user, selectedUser, deletable=True,
+                       showid=False)
+    if userForm.process().accepted:
+        redirect(URL(r=request, f='user_admin'))
+    elif userForm.errors:
+        response.flash = 'Edit Failure'
+    return dict(userForm = userForm)
+
+#################### _CREATE Pages ####################
 
 def clue_CREATE():
+    """ Clue creation """
     from gluon.tools import geocode
 
     clueCreate = SQLFORM(db.clue)
     if clueCreate.process().accepted:
-        response.flash = 'form accepted'
+        redirect(URL(r=request, f='hunt_admin'))
     elif clueCreate.errors:
         response.flash = 'form has errors'
 
@@ -169,59 +176,69 @@ def clue_CREATE():
                 clueCreate = clueCreate)
 
 def hunt_admin_CREATE():
+    """ Scavenger hunt creation """
     scavengerCreate = SQLFORM(db.scavenger_hunt)
     if scavengerCreate.process().accepted:
-        response.flash = 'form accepted'
+        redirect(URL(r=request, f='hunt_admin'))
     elif scavengerCreate.errors:
         response.flash = 'form has errors'
     return dict(scavengerCreate = scavengerCreate)
 
 def session_CREATE():
+    """ Session creation for a scavenger hunt """
     scavSessionCreate = SQLFORM(db.scavi_session)
     if scavSessionCreate.process().accepted:
-        response.flash = 'form accepted'
+        redirect(URL(r=request, f='hunt_admin'))
     elif scavSessionCreate.errors:
         response.flash = 'form has errors'
     return dict(scavSessionCreate = scavSessionCreate)
 
 def guidePost_CREATE():
+    """ Creation of a guide post for index view """
     documentCreate = SQLFORM(db.guidePost)
     if documentCreate.process().accepted:
-        response.flash = 'form accepted'
+        redirect(URL(r=request, f='index'))
     elif documentCreate.errors:
         response.flash = 'form has errors'
     return dict(documentCreate = documentCreate)
+
+#################### REST CALLS ####################
+
+def applogin():
+    """ REST call for user login, currently only login with a user's email """
+    email = request.vars['email']
     
+    logged_user = db((db.auth_user.email == email)).select()
+    return dict(logged_user = logged_user)
 
-########## REST CALLS ##########
+def huntsession():
+    """ REST call for retrieving each user's hunt sessions """
+    user_id = request.vars['user_id']
+    hunt_id = request.vars['hunt_id']
+    query = ((db.scavi_session.hunt_id == hunt_id) & (db.scavi_session.user_id == user_id))
+    usersession = db(query).select()
+    clueQuery = db.clue.hunt_id==hunt_id
+    clueRows = db(clueQuery).select()
+    
+    if len(usersession) < 1:
+        id = db.scavi_session.insert(user_id=user_id, hunt_id=hunt_id)
+        usersession = db((db.scavi_session.id == id)).select()
+    
+    return dict(session = usersession, rows=clueRows)
 
-def userREST():
-    """ Use to get .json format for specified user """
-    """ http://127.0.0.1:8000/ScaviHunt/default/userREST/154 """
-    """ http://127.0.0.1:8000/ScaviHunt/default/userREST.json/154 """
-    user_id = request.args(0, cast=int)
-    user = db.auth_user(user_id)
-    return dict (user = user)
+def updatesession():
+    """ REST call for updating and storing each user's hunt sessions """
+    user_id = request.vars['user_id']
+    hunt_id = request.vars['hunt_id']
+    current_clue_number = request.vars['current_clue_number']
+    points = request.vars['points']
+    
+    query = ((db.scavi_session.hunt_id == hunt_id) & (db.scavi_session.user_id == user_id))
+    usersession = db(query).update(current_clue_number=current_clue_number)
+    
+    return dict(status='success')
 
-def scavengerHuntREST():
-    """ Use to get .json format for specified scavenger hunt """
-    scavenger_id = request.args(0, cast=int)
-    scavengerHunt = db.scavenger_hunt(scavenger_id)
-    return dict (scavengerHunt = scavengerHunt)
-
-def clueREST():
-    """ Use to get .json format for specified clue """
-    clue_id = request.args(0, cast=int)
-    clue = db.clue(clue_id)
-    return dict(clue = clue)
-
-def scaviSessionREST():
-    """ Use to get .json format for specified scavenger session """
-    session_id = request.args(0, cast=int)
-    scavengerSession = db.scavi_session(session_id)
-    return dict (scavengerSession = scavengerSession)
-
-########## Extras ##########
+#################### Extras ####################
 
 def user():
     """
