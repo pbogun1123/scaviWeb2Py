@@ -1,12 +1,13 @@
 {{extend 'layout.html'}}
 
-<H4> Scavenger Hunts | 
-<a href="{{=URL('hunt_admin_CREATE')}}"> New Hunt </a></H4> <HR width="40%">
+<H4> Scavenger Hunts &nbsp;&nbsp;&nbsp;
+<a href="{{=URL('hunt_admin_CREATE')}}"><button> New Hunt </button> </a></H4> <HR width="40%">
 
 <table class = "table">
 {{for row in rows:}}
-<tr><a href="{{=URL('hunt_admin_CLICK', args=row.id)}}"> {{=row.name}} <BR> 
-<H6>{{=row.start_time.strftime("%m/%d/%Y")}} - {{=row.end_time.strftime("%m/%d/%Y")}}</H6></a></tr>
+<a href="{{=URL('hunt_admin_CLICK', args=row.id)}}"> {{=row.name}} </a>
+<H6>{{=row.start_time.strftime("%m/%d/%Y")}} - {{=row.end_time.strftime("%m/%d/%Y")}}</H6>
 <HR width="40%">
 {{pass}}
 </table>
+

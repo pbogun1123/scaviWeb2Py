@@ -1,6 +1,14 @@
 {{extend 'layout.html'}}
 
-<H4> {{=user.first_name}} {{=user.last_name}} </H4> <HR width="40%">
-<p> Email: {{=user.email}} </p>
+<H4> {{=user.first_name}} {{=user.last_name}} </H4> 
+<p> Email: {{=user.email}} </p> <BR><BR>
 
+
+<table class="table">
+<H5> Current Scavenger Hunts </H5> <HR width="45%">
+{{for hunt in userHunts:}}
+{{=hunt.hunt_id.name}} <HR width="45%">
 {{pass}}
+</table>
+
+<a href="{{=URL('user_EDIT', args=user.id)}}"><button> Edit User </button> </a>

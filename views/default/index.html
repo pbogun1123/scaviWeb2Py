@@ -1,11 +1,14 @@
 {{extend 'layout.html'}}
 
-<H4> Application Documentation | 
-<a href="{{=URL('guidePost_CREATE')}}"> New Document </a></h4></H4><HR width="40%">
+<H4> Application Documentation &nbsp;&nbsp;&nbsp;
+<a href="{{=URL('guidePost_CREATE')}}"><button> New Document </button></a></H4><HR width="45%">
 
 <table class = "table">
 {{for row in guideRows:}}
-<tr><a href="{{=URL('guidePost_CLICK', args=row.id)}}"> {{=row.postTitle}}
-<H6>{{=row.postDate.strftime("%m/%d/%Y")}} </H6></a></tr><HR width="40%">
+<a href="{{=URL('guidePost_CLICK', args=row.id)}}"> {{=row.postTitle}} </a>
+<H6>{{=row.postDate.strftime("%m/%d/%Y")}} </H6></tr><HR width="45%">
 {{pass}}
 </table>
+
+<a class="twitter-timeline" href="https://twitter.com/tmuscare" data-widget-id="577961716610367489">Tweets by @tmuscare</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
