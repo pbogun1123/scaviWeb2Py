@@ -141,6 +141,7 @@ def session_EDIT():
 
 def user_EDIT():
     """ Edit page for selected user """
+    db.auth_user.password.writable = False
     selectedUser = db.auth_user(request.args(0))
     userForm = SQLFORM(db.auth_user, selectedUser, deletable=True,
                        showid=False)
